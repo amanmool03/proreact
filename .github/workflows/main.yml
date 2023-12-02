@@ -1,0 +1,22 @@
+name: Lint, Test and Deploy
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm ci
+        if: success()
+      - name: Lint code
+        run: npm run lint
+        if: success()
+      - name: Test code
+        run: npm run test
+        if: success()
+      - name: Build Code
+        run: npm run build
+        if: success()
+      - name: Deploy Code
+        run: echo "Valid for deployment."
