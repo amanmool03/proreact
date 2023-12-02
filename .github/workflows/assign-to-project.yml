@@ -1,0 +1,18 @@
+name: Auto Assign issues to github project.
+on:
+  issues:
+    types:
+      - opened
+env:
+  ADD_TO_PROJECT_URL: https://github.com/users/amanmool03/projects/8
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    name: Assign to project
+    steps:
+      - name: Assigns New Issues to kanban
+        uses: actions/add-to-project@v0.4.0
+        with:
+          project-url: ${{env.ADD_TO_PROJECT_URL}}
+          github-token: ${{secrets.MY_GITHUB_TOKEN}}
